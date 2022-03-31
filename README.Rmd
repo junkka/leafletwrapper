@@ -1,0 +1,36 @@
+---
+output:
+  md_document: 
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+Leaflet-wrapper
+==================
+
+Provides wrapper functions for leaflet maps in R, using the excellent [leaflet R package](https://github.com/rstudio/leaflet). Defaults set to plotting Swedish maps in projection epsg:3006.
+
+## Installation:
+
+```r
+    devtools::install_github("junkka/leafletwrapper")
+```
+
+## Usage
+
+```{r}
+library(histmaps)
+library(leafletwrapper)
+library(leaflet)
+library(tidyverse)
+
+cnty1800 <- get_boundaries(1800, "county")
+cnty1990 <- get_boundaries(1990, "county")
+
+leaf_init() %>%
+  leaf_polygon(cnty1800, interactive = T,lbl = "name") %>% 
+  leaf_polygon(cnty1990, interactive = T,lbl = "name") %>% 
+  leaf_controls() 
+```
+
